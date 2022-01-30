@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <title>Day Progressbar</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+    <body style="background-color:rgb(30, 30, 30);">
+        <div>
+            <div style="color:white;font-size:3vw;" id="time" align="center"></div>
+            </br>
+            <div style="color:white;padding-left:10px;font-size:2vw;float:left;" id="date" align="left"></div>
+            <div style="color:white;padding-right:10px;font-size:2vw;float:right;" id="timeLeft" align="right"></div>
+        </div>
+        </br>
+        </br>
+        <div id="dayBar" class="w3-container w3-green" style="height:3.5vw;width:0%"></div>
+    </body>
+
+    <script>
+            setInterval(setTime, 1000);
+            function setTimeLeft(){
+                let time = new Date();
+                var hour = time.getHours();
+                var min = time.getMinutes();
+    
+                var hoursLeft = 23 - hour
+                var minsLeft = 60 - min
+                if (minsLeft == 60){
+                    minsLeft -=1;
+                }
+                document.getElementById("timeLeft").innerHTML = hoursLeft + " Hours And " + minsLeft + " Mins left";
+            }
+            function setDate(){
+                let time = new Date();
+                var year = time.getFullYear();
+                var month = time.getMonth();
+                var day = time.getDate();
+                if(month == 0){
+                    month = 1;
+                }
+
+                let currentDate = day + "/" 
+                    + month + "/" + year;
+    
+                document.getElementById("date").innerHTML = currentDate;
+            }
+            function setTime() {
+                let time = new Date();
+                let hour = time.getHours();
+                let min = time.getMinutes();
+                let sec = time.getSeconds();
+
+                am_pm = "";
+                if (hour > 12) {
+                    hour -= 12;
+                    am_pm = "PM";
+                }
+                else if (hour == 0) {
+                    hour = 12;
+                    am_pm = "AM";
+                }
+    
+                hour = hour < 10 ? "0" + hour : hour;
+                min = min < 10 ? "0" + min : min;
+                sec = sec < 10 ? "0" + sec : sec;
+                if (sec == 00){
+                    setTimeLeft();
+                    setBar();
+                }
+
+                if (hour == 00){
+                    setDate();
+                }
+
+                let currentTime = hour + ":" + min + ":" + sec + am_pm;
+                document.getElementById("time").innerHTML = currentTime;
+            }
+            function setBar(){
+                let time = new Date();
+                var hour = time.getHours();
+                var min = time.getMinutes();
+                var bar = document.getElementById("dayBar");
+                fmin = (hour * 60) +min;
+                var width = fmin * 0.06944444444;
+                bar.style.width = width + '%';
+            }
+            setTime();
+            setDate();
+            setTimeLeft()
+            setBar();
+        
+    </script>
+</html>
