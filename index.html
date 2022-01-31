@@ -6,15 +6,26 @@
     <style>
         :root {
             --barper: 0%;
+            --bargreen :rgb(76 175 80);
+            --bargrey :rgb(97 97 97);
         }
         .mainbar {
+            grid-column: 1;
+            grid-row: 1;
+            height:3.5vw;
+            border-radius: 5px 0px 0px 5px;
+            text-align:center;
+            background:var(--bargreen);
+            width: var(--barper);
+        }
+        .barborder {
+            grid-column: 1;
+            grid-row: 1;
             height:3.5vw;
             border-radius: 5px;
             width: 100%;;
             text-align:center;
-            color:#fff;
-            background:
-            linear-gradient(to right, rgb(76 175 80) var(--barper),rgb(97 97 97) 0%,rgb(97 97 97) 100%);
+            background: var(--bargrey);
         }
     </style>
     <body style="background-color:rgb(30, 30, 30);">
@@ -26,7 +37,8 @@
         </div>
         </br>
         </br>
-        <div style="padding: 0.6vw;">
+        <div style="display: grid; padding-right: 0.6vw;padding-left: 0.6vw;">
+            <div id="barBorder" class="barborder"></div>
             <div id="dayBar"class="mainbar"></div>
         </div>
     </body>
