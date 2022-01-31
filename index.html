@@ -3,6 +3,20 @@
         <title>Day Progressbar</title>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
+    <style>
+        :root {
+            --barper: 0%;
+        }
+        .mainbar {
+            height:3.5vw;
+            border-radius: 5px;
+            width: 100%;;
+            text-align:center;
+            color:#fff;
+            background:
+            linear-gradient(to right, rgb(76 175 80) var(--barper),rgb(97 97 97) 0%,rgb(97 97 97) 100%);
+        }
+    </style>
     <body style="background-color:rgb(30, 30, 30);">
         <div>
             <div style="color:white;font-size:3vw;" id="time" align="center"></div>
@@ -13,9 +27,7 @@
         </br>
         </br>
         <div style="padding: 0.6vw;">
-            <div class="w3-dark-grey w3-round">
-                <div id="dayBar" class="w3-container w3-green w3-round" style="height:3.5vw;width:0%"></div>
-            </div>
+            <div id="dayBar"class="mainbar"></div>
         </div>
     </body>
 
@@ -79,13 +91,13 @@
                 document.getElementById("time").innerHTML = currentTime;
             }
             function setBar(){
+                let root = document.documentElement;
                 let time = new Date();
                 var hour = time.getHours();
                 var min = time.getMinutes();
-                var bar = document.getElementById("dayBar");
                 fmin = (hour * 60) +min;
                 var width = fmin * 0.06944444444;
-                bar.style.width = width + '%';
+                root.style.setProperty('--barper', width + "%");
             }
             setTime();
             setDate();
